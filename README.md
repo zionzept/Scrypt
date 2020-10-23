@@ -64,3 +64,8 @@ int i @ 10
   ¤
 ¤
 ```
+
+Uses neither semicolons or formatting rules, whitespace is required only to separate tokens of the same style. Although less readable, the script above can be compressed like so:
+```
+int i@10~£i i@i-1$i=0¤¤
+```
