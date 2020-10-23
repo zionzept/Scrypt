@@ -1,12 +1,15 @@
 package parsing;
 
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.HashMap;
 
 import javax.lang.model.element.TypeParameterElement;
 
 import expressions.ArrayAccess;
 import reader.Reader;
+import ss.Scrypt;
 import statements.ArrayAssignStatement;
 import statements.AssignStatement;
 import statements.DeclareAndAssignStatement;
@@ -36,9 +39,11 @@ public class StatementParser {
 	private ConditionParser conditionParser;
 	private ArrayParser arrayParser;
 	private TypeExpressionParser valueParser;
+	private Scrypt scrypt;
 	
 	
-	public StatementParser(InputStream in) {
+	public StatementParser(InputStream in, Scrypt scrypt) {
+		this.scrypt = scrypt;
 		this.read = new Reader(in, Syntax.getIdentifiers(), Syntax.getTokens());
 		this.varmap = new HashMap<String, Type>();
 		this.expressionParser = new ExpressionParser(read, varmap);
@@ -162,7 +167,7 @@ public class StatementParser {
 	}
 	
 	private Statement parsePrintStatement() {
-		return new PrintStatement(valueParser.parseTypeExpression());
+		return new PrintStatement(valueParser.parseTypeExpression(), scrypt.out);
 	}
 	
 	private Statement parseDeclareStatement() {
@@ -188,27 +193,21 @@ public class StatementParser {
 			throw new ParsingException(read, "Declare statement: Illegal type or variable name.");
 		}
 		//String name = read.txtVal;
-		System.out.println(read); 
 		DeclareStatement statement = new DeclareStatement(prim, read.found(), varmap);
-		System.out.println(read); 
 		if (read.peek(Syntax.assign)) {
 			return new DeclareAndAssignStatement(statement, parseAssignStatement());
 		} else {
 			read.next();
 		}
-		System.out.println("\nVarMap:\n" + Util.hashMapToString(varmap));
 		
 		return statement;
 	}
 	
 	private AssignStatement parseAssignStatement() {
 		String name = read.found();
-		System.out.println("assign: " + name);
 		TypeExpression t = varmap.get(name);
-		System.out.println(t);
 		read.next(); // name is stored, moving on to see if identifier is followed by assign symbol or indexLB
 		if (read.found(Syntax.assign)) {
-			System.out.println("assign normal");
 			read.next();
 			if (t instanceof BooleanValue) {
 				return new AssignStatement(name, conditionParser.parseCondition(), varmap);
@@ -220,7 +219,6 @@ public class StatementParser {
 				throw new ParsingException(read, "Parse assign statement: undeclared variable '" + name + "'.");
 			}
 		} else if (read.check(Syntax.indexLB)) {
-			System.out.println("assign array");
 			if (!(t instanceof Array)) {
 				throw new ParsingException(read, name + " is no array, cannot access specified index");
 			}

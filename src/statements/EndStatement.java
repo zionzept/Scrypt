@@ -20,6 +20,13 @@ public class EndStatement implements Statement{
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("ENDIF(");
+		c.addToStringBuilderDetailed(sb, nesting);
+		sb.append(")");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

@@ -69,10 +69,12 @@ public class TypeExpressionParser {
 				// check for array? yup, do it!
 				
 				if (var instanceof Array && read.check(Syntax.indexLB)) {
-					arrayParser.parseIndexList();
+					//return arrayParser.parseIndexList();
+				} else {
+					return expressionParser.parseExpression();
 				}
 				
-				return var;		// all 4 kinds of variables caught here	[2]
+				return var;// <- shouldn't exist, catch above	// all 4 kinds of variables caught here	[2]
 			}
 			throw new ParsingException(read, "variable not declared");
 		}

@@ -19,6 +19,16 @@ public class LoopStatement implements Statement{
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		Util.addTabs(nesting, sb);
+		sb.append("LOOP {");
+		sb.append(Util.LF);
+		s.addToStringBuilderDetailed(sb, nesting);
+		Util.addTabs(nesting, sb);
+		sb.append(") {");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);
@@ -27,7 +37,11 @@ public class LoopStatement implements Statement{
 
 	@Override
 	public boolean interpret() {
-		while (!s.interpret());
+		while (!s.interpret()) {
+			if (Thread.currentThread().isInterrupted()) {
+				break;
+			}
+		}
 		return false;
 	}
 }

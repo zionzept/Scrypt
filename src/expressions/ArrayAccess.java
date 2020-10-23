@@ -30,6 +30,11 @@ public class ArrayAccess implements Expression {
 		addToStringBuilder(sb, 0);
 		return sb.toString();
 	}
+	
+	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("TODO");
+	}
 
 	@Override
 	public void addToStringBuilder(StringBuilder sb, int nestledness) {

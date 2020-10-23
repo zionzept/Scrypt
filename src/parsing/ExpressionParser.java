@@ -101,7 +101,6 @@ public class ExpressionParser {
 				read.next();
 		} else if(read.foundText()) {
 			// symbol... variable or function?
-			System.out.println("num var" + read);
 			String name = read.txtVal;
 			read.next();
 			// check if variable index is specified

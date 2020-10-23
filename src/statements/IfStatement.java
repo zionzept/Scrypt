@@ -36,6 +36,24 @@ public class IfStatement implements Statement{
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		Util.addTabs(nesting, sb);
+		sb.append("IF(");
+		cIf.addToStringBuilderDetailed(sb, nesting);
+		sb.append(") {");
+		sb.append(Util.LF);
+		sThen.addToStringBuilderDetailed(sb, nesting);
+		sb.append("}");
+		if (sElse != null) {
+			Util.addTabs(nesting, sb);
+			sb.append(" ELSE {");
+			sb.append(Util.LF);
+			sElse.addToStringBuilderDetailed(sb, nesting);
+			sb.append("}");
+		}
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

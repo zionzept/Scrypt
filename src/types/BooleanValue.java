@@ -39,6 +39,11 @@ public class BooleanValue implements Type, Condition {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append(value ? "TRUE" : "FALSE");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

@@ -13,14 +13,17 @@ import parsing.StatementParser;
 import statements.StatementBlock;
 
 public class Scrypt {
-	private static final boolean PRINT_PARSED_CODE = true;
-	private static final String FILE_NAME = "scrypts\\example\\test.cry"; // move to arg
+	public boolean PRINT_PARSED_CODE = true;
+	private static final String FILE_NAME = "scrypts\\example\\test.ss"; // move to arg
+	
+	public PrintStream out;
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		Scrypt scrypt = new Scrypt(new File(FILE_NAME));
-		//Scrypt scrypt = new Scrypt("int x@2£2*2+2*x¤");
+		//Scrypt scrypt = new Scrypt("int x@2ï¿½2*2+2*xï¿½");
 		StatementBlock sb = scrypt.parse();
-		if (PRINT_PARSED_CODE) {
+		
+		if (scrypt.PRINT_PARSED_CODE) {
 			System.out.println("---v-PARSED-CODE-v--------------------------------------------------------------------------");
 			System.out.println(sb);
 			System.out.println("\n---v---OUTPUT----v--------------------------------------------------------------------------");
@@ -32,6 +35,7 @@ public class Scrypt {
 	
 	public Scrypt(InputStream in) {
 		this.in = in;
+		this.out = System.out;
 	}
 	
 	public Scrypt(File file) throws FileNotFoundException {
@@ -43,7 +47,7 @@ public class Scrypt {
 	}
 
 	public StatementBlock parse() {
-		StatementParser parser = new StatementParser(in);
+		StatementParser parser = new StatementParser(in, this);
 		StatementBlock sb = parser.parse();
 		return sb;
 	}

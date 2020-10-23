@@ -23,6 +23,15 @@ public class DeclareAndAssignStatement implements Statement{
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("DECLAREASSIGN(");
+		declare.addToStringBuilderDetailed(sb, nesting);
+		sb.append(", ");
+		assign.addToStringBuilderDetailed(sb, nesting);
+		sb.append(")");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

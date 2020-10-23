@@ -22,6 +22,11 @@ public class BooleanVariable implements Condition {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append(name).append("_").append(varmap.get(name).getTypeName());
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

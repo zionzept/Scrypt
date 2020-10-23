@@ -29,6 +29,13 @@ public class StatementBlock implements Statement{
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		for (Statement s : statements) {
+			s.addToStringBuilderDetailed(sb, nesting + 1);
+		}
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, -1);
@@ -40,6 +47,9 @@ public class StatementBlock implements Statement{
 		for (Statement s : statements) {
 			if (s.interpret()) {
 				return true;
+			}
+			if (Thread.currentThread().isInterrupted()) {
+				break;
 			}
 		}
 		return false;

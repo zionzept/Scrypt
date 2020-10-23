@@ -21,6 +21,15 @@ public class MultiplyExpression implements Expression {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("MUL(");
+		e0.addToStringBuilderDetailed(sb, nesting);
+		sb.append(", ");
+		e1.addToStringBuilderDetailed(sb, nesting);
+		sb.append(")");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

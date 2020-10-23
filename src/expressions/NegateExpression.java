@@ -18,6 +18,13 @@ public class NegateExpression implements Expression {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("NEG(");
+		e.addToStringBuilderDetailed(sb, nesting);
+		sb.append(")");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

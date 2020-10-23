@@ -24,6 +24,15 @@ public class LessThanCondition implements Condition {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("LT(");
+		exp0.addToStringBuilderDetailed(sb, nesting);
+		sb.append(", ");
+		exp1.addToStringBuilderDetailed(sb, nesting);
+		sb.append(")");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);

@@ -5,8 +5,8 @@ import java.util.Map.Entry;
 
 
 public class Util {
-	public static final String LF = System.getProperty("line.separator");
-	public static final int TAB_SIZE = 4;
+	public static final String LF = new String(new char[] {(char)10, (char)13});//System.getProperty("line.separator");
+	public static final int TAB_SIZE = 1;
 	
 	public static void printTabbed(int tabs, char c) {
 		StringBuilder sb = new StringBuilder();
@@ -24,7 +24,7 @@ public class Util {
 	
 	public static void addTabs(int tabs, StringBuilder sb) {
 		for (int i = 0; i < tabs * TAB_SIZE; i++) {
-			sb.append(' ');
+			sb.append('\t');
 		}
 	}
 	

@@ -25,6 +25,11 @@ public class IntegerValue implements NumericValue {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append(Integer.toString(value));
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);
@@ -38,7 +43,7 @@ public class IntegerValue implements NumericValue {
 		} else if (o instanceof CharValue) {
 			return new IntegerValue(value + ((CharValue)o).value);
 		} else if (o instanceof DoubleValue) {
-			return  new DoubleValue(value - ((DoubleValue)o).value);
+			return  new DoubleValue(value + ((DoubleValue)o).value);
 		}
 		throw new RuntimeException("add end reach");
 	}

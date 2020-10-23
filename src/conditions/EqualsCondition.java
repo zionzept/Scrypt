@@ -24,6 +24,15 @@ public class EqualsCondition implements Condition {
 	}
 	
 	@Override
+	public void addToStringBuilderDetailed(StringBuilder sb, int nesting) {
+		sb.append("EQ(");
+		type0.addToStringBuilderDetailed(sb, nesting);
+		sb.append(", ");
+		type1.addToStringBuilderDetailed(sb, nesting);
+		sb.append(")");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		addToStringBuilder(sb, 0);
