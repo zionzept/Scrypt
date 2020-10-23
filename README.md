@@ -71,3 +71,7 @@ Uses neither semicolons or formatting rules, whitespace is required only to sepa
 ```
 int i@10~£i i@i-1$i=0¤¤
 ```
+
+Don't want to download scrypt interpreter? No problem!
+Mail your scrypt to sscriptbot@gmail.com and get the output (or debug message for bad scrypts) in reply.
+(Rip the mail bot cannot connect to the mail anymore, seems Google has changed something security related)
