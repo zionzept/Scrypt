@@ -14,18 +14,26 @@ Scrypt! Custom script interpreter in java.
 ¤
 ```
 
-@ Variable declaration and assigning (prints 12.4):
+@ Variable declaration and assigning (prints 10 and 2.4):
 ```
 int i
 i @ 10
 
 float f @ 2.4
 
-£ i + f
+£ i
+£ f
 ¤
 ```
 
++- Expressions
+```
+float f @ 2.4
+float z @ 2(f+3)
 
+£ z-f/2
+¤
+```
 
 Control flow
 
