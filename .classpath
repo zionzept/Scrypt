@@ -7,8 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/Snorb/DocumentsS/Pro/Jars/javamail/activation.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Snorb/DocumentsS/Pro/Jars/javamail/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Snorb/DocumentsS/Pro/Jars/javamail/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shiin/DocumentsS/Pro/Jars/javamail/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shiin/DocumentsS/Pro/Jars/javamail/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shiin/DocumentsS/Pro/Jars/javamail/jsoup-1.11.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
